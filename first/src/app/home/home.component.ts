@@ -1,10 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuestionComponent } from '../question/question.component';
-import { QuestionsService, Question, PackedQuestion, Section } from '../questions.service';
+import { QuestionsService, Question, Section } from '../questions.service';
 
-import * as vm_topics from '../../assets/1/VM.topics.json'
-const topics: string[] = vm_topics['default'];
 
 @Component({
   selector: 'app-home',
@@ -16,9 +14,8 @@ const topics: string[] = vm_topics['default'];
 export class HomeComponent {
   questionsService: QuestionsService = inject(QuestionsService);
   questionList: Question[] = this.questionsService.getAllQuestions();
-  //  data.map((entry) => new Question(entry));
   filteredQuestionList: Question[] = [];
-  topicsList: string[] = topics;
+  topicsList: string[] = this.questionsService.getAllTopics();
 
   constructor() {
     this.filteredQuestionList = this.questionList;

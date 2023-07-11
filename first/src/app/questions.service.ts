@@ -39,21 +39,31 @@ export type PackedQuestion = {
 }
 
 
-// import * as vm_data from '../../assets/1/VM.data.json';
-// import * as ai_data from '../../assets/1/AI.data.json';
-// import * as de_data from '../../assets/1/DE.data.json';
-// import * as p_data from '../../assets/1/P.data.json';
-// import * as vm_topics from '../../assets/1/VM.topics.json';
-// import * as ai_topics from '../../assets/1/AI.topics.json';
-// import * as de_topics from '../../assets/1/DE.topics.json';
-// import * as p_topics from '../../assets/1/P.topics.json';
-
-// const data: PackedQuestion[] = [...vm_data, ...ai_data, ...de_data, ...p_data];
-// const topics: string[] = [...vm_topics, ...ai_topics, ...de_topics, ...p_topics];
-
 import * as vm_data from '../assets/1/VM.data.json';
+import * as ai_data from '../assets/1/AI.data.json';
+import * as de_data from '../assets/1/DE.data.json';
+import * as p_data from '../assets/1/P.data.json';
 import * as vm_topics from '../assets/1/VM.topics.json';
-const data: PackedQuestion[] = vm_data['default'];
+import * as ai_topics from '../assets/1/AI.topics.json';
+import * as de_topics from '../assets/1/DE.topics.json';
+import * as p_topics from '../assets/1/P.topics.json';
+
+const data: PackedQuestion[] = [
+  ...vm_data['default'],
+  ...ai_data['default'],
+  ...de_data['default'],
+  ...p_data['default']
+];
+const topics: string[] = [
+  ...vm_topics['default'],
+  ...ai_topics['default'],
+  ...de_topics['default'],
+  ...p_topics['default']
+];
+
+// import * as vm_data from '../assets/1/VM.data.json';
+// import * as vm_topics from '../assets/1/VM.topics.json';
+// const data: PackedQuestion[] = vm_data['default'];
 // const topics: string[] = vm_topics['default'];
 
 const files: string[] = [
@@ -79,12 +89,18 @@ const files: string[] = [
 })
 export class QuestionsService {
   questions: Question[];
+  // TODO: should topics be handled elsewhere?
+  topics: string[];
 
   getAllQuestions(): Question[] {
     return this.questions;
   }
+  getAllTopics(): string[] {
+    return this.topics;
+  }
 
-  constructor() { 
+  constructor() {
     this.questions = data.map((entry) => new Question(entry));
+    this.topics = topics;
   }
 }
