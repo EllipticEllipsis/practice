@@ -1,0 +1,63 @@
+[
+    {
+        "id": "1_2023_1_I_3E",
+        "course": "AI",
+        "topics": [
+            "chain rule",
+            "composition",
+            "differentiability"
+        ]
+    },
+    {
+        "id": "1_2023_1_I_4E",
+        "course": "AI",
+        "topics": [
+            "radius of convergence",
+            "comparison test",
+            "series",
+            "absolute convergence"
+        ]
+    },
+    {
+        "id": "1_2023_1_II_9E",
+        "course": "AI",
+        "topics": [
+            "sequences",
+            "Raabe's test",
+            "alternating series test",
+            "convergence"
+        ]
+    },
+    {
+        "id": "1_2023_1_II_10E",
+        "course": "AI",
+        "topics": [
+            "sequences",
+            "monotonicity",
+            "intermediate value theorem",
+            "continuity"
+        ]
+    },
+    {
+        "id": "1_2023_1_II_11E",
+        "course": "AI",
+        "topics": [
+            "differentiability",
+            "mean value theorem",
+            "L'Hopital",
+            "divided differences",
+            "logarithm"
+        ]
+    },
+    {
+        "id": "1_2023_1_II_12E",
+        "course": "AI",
+        "topics": [
+            "sequences",
+            "integrability",
+            "integration",
+            "fundamental theorem of calculus",
+            "Integration and continuity"
+        ]
+    }
+]

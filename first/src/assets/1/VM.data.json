@@ -1,0 +1,65 @@
+[
+    {
+        "id": "1_2023_1_I_1A",
+        "course": "VM",
+        "topics": [
+            "complex powers",
+            "complex logarithm",
+            "principal value",
+            "complex numbers"
+        ]
+    },
+    {
+        "id": "1_2023_1_I_2C",
+        "course": "VM",
+        "topics": [
+            "matrices",
+            "normal matrices",
+            "Hermitian and unitary matrices"
+        ]
+    },
+    {
+        "id": "1_2023_1_II_5A",
+        "course": "VM",
+        "topics": [
+            "minimum distance",
+            "geometry",
+            "planes and spheres",
+            "vectors",
+            "vector equations"
+        ]
+    },
+    {
+        "id": "1_2023_1_II_6C",
+        "course": "VM",
+        "topics": [
+            "matrices",
+            "Cayley-Hamilton",
+            "similarity and change of basis",
+            "nilpotency",
+            "diagonalisation",
+            "eigenvalues and eigenvectors"
+        ]
+    },
+    {
+        "id": "1_2023_1_II_7B",
+        "course": "VM",
+        "topics": [
+            "matrices",
+            "singular value decomposition",
+            "eigenvalues and eigenvectors",
+            "Hermitian and unitary matrices"
+        ]
+    },
+    {
+        "id": "1_2023_1_II_8B",
+        "course": "VM",
+        "topics": [
+            "matrices",
+            "determinant and trace",
+            "orthogonal matrices, rotations and reflexions",
+            "image, kernel, rank, nullity",
+            "eigenvalues and eigenvectors"
+        ]
+    }
+]

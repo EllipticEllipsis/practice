@@ -1,0 +1,61 @@
+[
+    {
+        "id": "1_2023_2_I_1A",
+        "course": "DE",
+        "topics": [
+            "forced",
+            "higher order",
+            "linear",
+            "ODE"
+        ]
+    },
+    {
+        "id": "1_2023_2_I_2A",
+        "course": "DE",
+        "topics": [
+            "infinite limit",
+            "linear",
+            "nonlinear",
+            "first order"
+        ]
+    },
+    {
+        "id": "1_2023_2_II_5A",
+        "course": "DE",
+        "topics": [
+            "forced",
+            "infinite limit",
+            "linear",
+            "solution sketching",
+            "first order"
+        ]
+    },
+    {
+        "id": "1_2023_2_II_6A",
+        "course": "DE",
+        "topics": [
+            "PDE",
+            "series expansions (other)",
+            "change of variables"
+        ]
+    },
+    {
+        "id": "1_2023_2_II_7A",
+        "course": "DE",
+        "topics": [
+            "coupled equations",
+            "Dirac Delta and Heaviside"
+        ]
+    },
+    {
+        "id": "1_2023_2_II_8A",
+        "course": "DE",
+        "topics": [
+            "series expansions (other)",
+            "second order",
+            "critical points",
+            "solution sketching",
+            "phase portrait sketching"
+        ]
+    }
+]

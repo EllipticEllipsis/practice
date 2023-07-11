@@ -1,0 +1,70 @@
+[
+    {
+        "id": "1_2023_2_I_3F",
+        "course": "P",
+        "topics": [
+            "continuous RVs",
+            "Markov's and Chebyshev's inequalities",
+            "inequalities",
+            "MGF"
+        ]
+    },
+    {
+        "id": "1_2023_2_I_4F",
+        "course": "P",
+        "topics": [
+            "uniform distribution",
+            "counting",
+            "independence (probability)",
+            "events"
+        ]
+    },
+    {
+        "id": "1_2023_2_II_9F",
+        "course": "P",
+        "topics": [
+            "discrete RVs",
+            "random number of RVs",
+            "uniform distribution",
+            "Poisson distribution",
+            "birthdays",
+            "independence (probability)",
+            "multivariate distributions"
+        ]
+    },
+    {
+        "id": "1_2023_2_II_10F",
+        "course": "P",
+        "topics": [
+            "discrete RVs",
+            "mean and variance",
+            "Central Limit Theorem",
+            "Gamma distribution",
+            "MGF"
+        ]
+    },
+    {
+        "id": "1_2023_2_II_11F",
+        "course": "P",
+        "topics": [
+            "transformations of RVs",
+            "continuous RVs",
+            "conditional probability",
+            "independence (RVs)",
+            "multivariate distributions",
+            "exponential distribution"
+        ]
+    },
+    {
+        "id": "1_2023_2_II_12F",
+        "course": "P",
+        "topics": [
+            "PGF",
+            "random number of RVs",
+            "extinction probability",
+            "mean and variance",
+            "branching processes",
+            "inequalities"
+        ]
+    }
+]

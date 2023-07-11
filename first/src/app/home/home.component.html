@@ -1,0 +1,59 @@
+<form>
+    <label for="year">Year</label>
+    <input type="text" id="year" name="year" #yearfilter>
+    <label for="section">Section</label>
+    <input type="text" id="section" name="section" #sectionfilter>
+    <label for="section">Course</label>
+    <input type="text" id="course" name="course" #coursefilter>
+
+    <div style="width: 500px">
+        <button type="button" *ngFor="let t of topicsList">{{ t }}</button>
+    </div>
+
+    <p></p>
+    <button class="primary" type="button" (click)="filterResults(yearfilter.value, sectionfilter.value, coursefilter.value)">Filter</button>
+    <p>{{ filteredQuestionList.length }} result{{ filteredQuestionList.length !== 1 ? 's' : '' }}</p>
+</form>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Part</th>
+        <th>Year</th>
+        <th>Paper</th>
+        <th>Section</th>
+        <th>Number</th>
+        <th>Examiner</th>
+        <th>Course</th>
+        <th>Topics</th>
+    </tr>
+    <tr *ngFor="let q of filteredQuestionList">
+        <td>
+            {{ q.id }}
+        </td>
+        <td>
+            {{ q.part }}
+        </td>
+        <td>
+            {{ q.year }}
+        </td>
+        <td>
+            {{ q.paper }}
+        </td>
+        <td>
+            {{ q.section }}
+        </td>
+        <td>
+            {{ q.number }}
+        </td>
+        <td>
+            {{ q.examiner }}
+        </td>
+        <td>
+            {{ q.course }}
+        </td>
+        <td>
+            {{ q.topics }}
+        </td>
+    </tr>
+</table>
