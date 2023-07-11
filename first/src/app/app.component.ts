@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { QuestionComponent, Question, PackedQuestion } from './question/question.component';
-import { HomeComponent } from './home/home.component';
+// import { QuestionComponent, Question, PackedQuestion } from './question/question.component';
+// import { HomeComponent } from './home/home.component';
 
 
 
