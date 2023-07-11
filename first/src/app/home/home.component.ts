@@ -13,14 +13,16 @@ import { QuestionsService, Question, Section } from '../questions.service';
 })
 export class HomeComponent {
   questionsService: QuestionsService = inject(QuestionsService);
-  questionList: Question[] = this.questionsService.getAllQuestions();
+  questionList: Question[] = [];
   filteredQuestionList: Question[] = [];
   topicsList: string[] = this.questionsService.getAllTopics();
-
+  
   constructor() {
+    this.questionsService.questionsEmitter.subscribe(questions => this.questionList = questions);
     this.filteredQuestionList = this.questionList;
+    console.log(this.questionList);
   }
-
+  
   filterResults(year: string, section: string, course: string) {
     this.filteredQuestionList = this.questionList;
     if (year) {

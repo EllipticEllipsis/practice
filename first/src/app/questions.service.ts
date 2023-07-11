@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { forkJoin } from 'rxjs';
 
 export interface ResultJson { }
 
@@ -79,15 +80,13 @@ const files: string[] = [
   "DR",
 ]
 
-// const data = [];
-
-// '../../assets/1/' + f + '.data.json'
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsService {
-  questions: Question[];
+  questions: Question[] = [];
+  public questionsEmitter = new EventEmitter<Question[]>()
   // TODO: should topics be handled elsewhere?
   topics: string[];
 
@@ -104,13 +103,47 @@ export class QuestionsService {
   }
 
   constructor(private http: HttpClient) {
-    const packedQuestions: PackedQuestion[] = [];
-    this.getDataText().subscribe((data) => { 
-      console.log(typeof data); 
-      console.log(data); 
-      packedQuestions.push(...JSON.parse(data as any)); });
-    this.questions = packedQuestions.map((entry) => new Question(entry));
+    // const packedQuestions: PackedQuestion[] = [];
+    const arrayOfObservables = files.map(
+      f => this.http.get('../../assets/1/' + f + '.data.json', { responseType: 'text' as 'json' })
+    )
+    forkJoin(arrayOfObservables).subscribe((arrayOfDataFiles) => {
+      this.questions = [];
+      arrayOfDataFiles.forEach((oneFileOfData) =>
+        this.questions.push(
+          ...JSON.parse(oneFileOfData as any)
+            .map(entry => new Question(entry))
+
+        )
+      );
+      console.log(this.questions);
+      this.questionsEmitter.emit(this.questions);
+    });
+    // const arrayOfObservables = files.map(
+    //   f => this.http.get('../../assets/1/' + f + '.data.json', { responseType: 'text' as 'json' })
+    // )
+    // forkJoin(arrayOfObservables).subscribe((data) => {
+    //   console.log(typeof data);
+    //   console.log(data);
+    //   const packedQuestions: PackedQuestion[] = [];
+    //   packedQuestions.push(...JSON.parse(data as any));
+    //   this.questions = packedQuestions.map((entry) => new Question(entry));
+    //   console.log(this.questions);
+    // });
+    // this.questions = packedQuestions.map((entry) => new Question(entry)));
     // this.questions = data.map((entry) => new Question(entry));
     this.topics = topics;
   }
 }
+
+
+// constructor(private http: HttpClient) {
+//   const packedQuestions: PackedQuestion[] = [];
+//   this.getDataText().subscribe((data) => { 
+//     console.log(typeof data); 
+//     console.log(data); 
+//     packedQuestions.push(...JSON.parse(data as any)); });
+//   this.questions = packedQuestions.map((entry) => new Question(entry));
+//   // this.questions = data.map((entry) => new Question(entry));
+//   this.topics = topics;
+// }
