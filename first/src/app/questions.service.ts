@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
 
+export interface ResultJson { }
 
 export type Part = 'IA' | 'IB' | 'II' | undefined;
 export type Section = 'I' | 'II' | undefined;
@@ -81,9 +83,6 @@ const files: string[] = [
 
 // '../../assets/1/' + f + '.data.json'
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -99,8 +98,19 @@ export class QuestionsService {
     return this.topics;
   }
 
-  constructor() {
-    this.questions = data.map((entry) => new Question(entry));
+  getDataText() {
+    const f = files[0];
+    return this.http.get('../../assets/1/' + f + '.data.json', { responseType: 'text' as 'json' })
+  }
+
+  constructor(private http: HttpClient) {
+    const packedQuestions: PackedQuestion[] = [];
+    this.getDataText().subscribe((data) => { 
+      console.log(typeof data); 
+      console.log(data); 
+      packedQuestions.push(...JSON.parse(data as any)); });
+    this.questions = packedQuestions.map((entry) => new Question(entry));
+    // this.questions = data.map((entry) => new Question(entry));
     this.topics = topics;
   }
 }
