@@ -41,33 +41,18 @@ export type PackedQuestion = {
   topics: string[];
 }
 
-
-import * as vm_data from '../assets/1/VM.data.json';
-import * as ai_data from '../assets/1/AI.data.json';
-import * as de_data from '../assets/1/DE.data.json';
-import * as p_data from '../assets/1/P.data.json';
+// TODO: decide whether to pull these in with the service
 import * as vm_topics from '../assets/1/VM.topics.json';
 import * as ai_topics from '../assets/1/AI.topics.json';
 import * as de_topics from '../assets/1/DE.topics.json';
 import * as p_topics from '../assets/1/P.topics.json';
 
-const data: PackedQuestion[] = [
-  ...vm_data['default'],
-  ...ai_data['default'],
-  ...de_data['default'],
-  ...p_data['default']
-];
 const topics: string[] = [
   ...vm_topics['default'],
   ...ai_topics['default'],
   ...de_topics['default'],
   ...p_topics['default']
 ];
-
-// import * as vm_data from '../assets/1/VM.data.json';
-// import * as vm_topics from '../assets/1/VM.topics.json';
-// const data: PackedQuestion[] = vm_data['default'];
-// const topics: string[] = vm_topics['default'];
 
 const files: string[] = [
   "VM",
@@ -103,7 +88,6 @@ export class QuestionsService {
   }
 
   constructor(private http: HttpClient) {
-    // const packedQuestions: PackedQuestion[] = [];
     const arrayOfObservables = files.map(
       f => this.http.get('../../assets/1/' + f + '.data.json', { responseType: 'text' as 'json' })
     )
@@ -116,34 +100,9 @@ export class QuestionsService {
 
         )
       );
-      console.log(this.questions);
       this.questionsEmitter.emit(this.questions);
     });
-    // const arrayOfObservables = files.map(
-    //   f => this.http.get('../../assets/1/' + f + '.data.json', { responseType: 'text' as 'json' })
-    // )
-    // forkJoin(arrayOfObservables).subscribe((data) => {
-    //   console.log(typeof data);
-    //   console.log(data);
-    //   const packedQuestions: PackedQuestion[] = [];
-    //   packedQuestions.push(...JSON.parse(data as any));
-    //   this.questions = packedQuestions.map((entry) => new Question(entry));
-    //   console.log(this.questions);
-    // });
-    // this.questions = packedQuestions.map((entry) => new Question(entry)));
-    // this.questions = data.map((entry) => new Question(entry));
+
     this.topics = topics;
   }
 }
-
-
-// constructor(private http: HttpClient) {
-//   const packedQuestions: PackedQuestion[] = [];
-//   this.getDataText().subscribe((data) => { 
-//     console.log(typeof data); 
-//     console.log(data); 
-//     packedQuestions.push(...JSON.parse(data as any)); });
-//   this.questions = packedQuestions.map((entry) => new Question(entry));
-//   // this.questions = data.map((entry) => new Question(entry));
-//   this.topics = topics;
-// }
