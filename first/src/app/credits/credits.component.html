@@ -1,0 +1,12 @@
+<h2>Credits</h2>
+
+<dl>
+    <ng-container *ngFor="let section of creditsList">
+        <dt>{{ section.category }}</dt>
+        <dd>
+            <ul>
+                <li *ngFor="let person of section.people">{{ person }}</li>
+            </ul>
+        </dd>
+    </ng-container>
+</dl>

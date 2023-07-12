@@ -88,6 +88,7 @@ export class QuestionsService {
   }
 
   constructor(private http: HttpClient) {
+    console.log("QUESTIONS service")
     const arrayOfObservables = files.map(
       f => this.http.get('../../assets/1/' + f + '.data.json', { responseType: 'text' as 'json' })
     )

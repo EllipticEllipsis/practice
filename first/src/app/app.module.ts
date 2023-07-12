@@ -1,20 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { CreditsComponent } from "./credits/credits.component";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
+  providers: [],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     HomeComponent,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    HttpClientModule,
+    CreditsComponent,
+    RouterModule.forRoot([
+      { path: 'credits', component: CreditsComponent },
+      { path: 'home', component: HomeComponent },
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: '**', component: PageNotFoundComponent }
+    ])
+  ]
 })
 export class AppModule { }

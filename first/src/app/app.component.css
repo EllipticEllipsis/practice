@@ -1,0 +1,10 @@
+.button {
+    border: 1px solid black;
+    text-decoration: none;
+    color: black;
+    padding: 6px 24px;
+}
+
+.activebutton {
+    border-bottom: 2px solid purple;
+}
