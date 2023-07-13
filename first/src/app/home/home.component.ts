@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuestionComponent } from '../question/question.component';
 import { QuestionsService, Question, Section } from '../questions.service';
-
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,6 @@ import { QuestionsService, Question, Section } from '../questions.service';
 })
 export class HomeComponent {
   questionsService: QuestionsService = inject(QuestionsService);
-  questionsSubscription;
   questionList: Question[] = [];
   filteredQuestionList: Question[] = [];
   filtered: boolean = false;
@@ -21,14 +20,10 @@ export class HomeComponent {
   topicsList: string[] = this.questionsService.getAllTopics();
 
   constructor() {
-    console.log("HOME ct")
-    this.questionsSubscription = this.questionsService.questionsEmitter.subscribe(
+    // console.log("HOME ct");
+    this.questionsService.questionsEmitter.pipe(first()).subscribe(
       questions => {
-        // if (this.questionsObtained) {
-        //   return;
-        // }
-        console.log("QUESTIONS emitted, length " + questions.length)
-
+        // console.log("QUESTIONS emitted, length " + questions.length)
         this.questionList = questions;
         // Only update when no filter applied
         if (!this.filtered) {
@@ -37,11 +32,7 @@ export class HomeComponent {
         this.questionsObtained = true;
       });
     this.questionsService.getData();
-    console.log(this.questionList);
-  }
-
-  ngOnDestroy() {
-    this.questionsSubscription.unsubscribe();
+    // console.log(this.questionList);
   }
 
   // TODO: topic filters
