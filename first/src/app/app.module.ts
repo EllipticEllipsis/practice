@@ -21,9 +21,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpClientModule,
     CreditsComponent,
     RouterModule.forRoot([
-      { path: 'credits', component: CreditsComponent },
       { path: 'home', component: HomeComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: 'credits', component: CreditsComponent },
       { path: '**', component: PageNotFoundComponent }
     ])
   ]

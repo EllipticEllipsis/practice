@@ -47,12 +47,12 @@ import * as ai_topics from '../assets/1/AI.topics.json';
 import * as de_topics from '../assets/1/DE.topics.json';
 import * as p_topics from '../assets/1/P.topics.json';
 
-const topics: string[] = [
-  ...vm_topics['default'],
-  ...ai_topics['default'],
-  ...de_topics['default'],
-  ...p_topics['default']
-];
+const topics: { [key: string]: string[] } = {
+  'VM': vm_topics['default'],
+  'AI': ai_topics['default'],
+  'DE': de_topics['default'],
+  'P': p_topics['default']
+};
 
 const files: string[] = [
   "VM",
@@ -73,13 +73,16 @@ export class QuestionsService {
   questions: Question[] = [];
   public questionsEmitter = new EventEmitter<Question[]>()
   // TODO: should topics be handled elsewhere?
-  topics: string[];
+  topics : { [key: string]: string[] };
 
   getAllQuestions(): Question[] {
     return this.questions;
   }
-  getAllTopics(): string[] {
+  getAllTopics(): { [key: string]: string[] } {
     return this.topics;
+  }
+  getCourseTopics(course: string): string[] {
+    return this.topics[course];
   }
 
   getData() {

@@ -17,7 +17,7 @@ export class HomeComponent {
   filteredQuestionList: Question[] = [];
   filtered: boolean = false;
   questionsObtained: boolean = false;
-  topicsList: string[] = this.questionsService.getAllTopics();
+  topicsLists: { [key: string]: string[] } = this.questionsService.getAllTopics();
 
   constructor() {
     // console.log("HOME ct");

@@ -7,8 +7,11 @@
     <label for="section">Course</label>
     <input type="text" id="course" name="course" #coursefilter>
 
-    <div style="width: 500px">
-        <button type="button" *ngFor="let t of topicsList">{{ t }}</button>
+    <div style="width: 600px">
+        <ng-container *ngFor="let courseTopics of topicsLists | keyvalue">
+            <h3>{{ courseTopics.key }}</h3>
+            <button type="button" *ngFor="let t of courseTopics.value">{{ t }}</button>
+        </ng-container>
     </div>
 
     <p></p>
