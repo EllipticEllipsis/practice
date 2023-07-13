@@ -13,15 +13,20 @@ import { QuestionsService, Question, Section } from '../questions.service';
 })
 export class HomeComponent {
   questionsService: QuestionsService = inject(QuestionsService);
+  questionsSubscription;
   questionList: Question[] = [];
   filteredQuestionList: Question[] = [];
   filtered: boolean = false;
+  questionsObtained: boolean = false;
   topicsList: string[] = this.questionsService.getAllTopics();
 
   constructor() {
     console.log("HOME ct")
-    this.questionsService.questionsEmitter.subscribe(
+    this.questionsSubscription = this.questionsService.questionsEmitter.subscribe(
       questions => {
+        // if (this.questionsObtained) {
+        //   return;
+        // }
         console.log("QUESTIONS emitted, length " + questions.length)
 
         this.questionList = questions;
@@ -29,9 +34,14 @@ export class HomeComponent {
         if (!this.filtered) {
           this.filteredQuestionList = this.questionList;
         }
+        this.questionsObtained = true;
       });
     this.questionsService.getData();
     console.log(this.questionList);
+  }
+
+  ngOnDestroy() {
+    this.questionsSubscription.unsubscribe();
   }
 
   // TODO: topic filters
