@@ -82,13 +82,12 @@ export class QuestionsService {
     return this.topics;
   }
 
-  getDataText() {
-    const f = files[0];
-    return this.http.get('../../assets/1/' + f + '.data.json', { responseType: 'text' as 'json' })
-  }
-
-  constructor(private http: HttpClient) {
-    console.log("QUESTIONS service")
+  getData() {
+    if (this.questions.length > 0) {
+      console.log("emit from cache");
+      this.questionsEmitter.emit(this.questions);
+      return;
+    }
     const arrayOfObservables = files.map(
       f => this.http.get('../../assets/1/' + f + '.data.json', { responseType: 'text' as 'json' })
     )
@@ -97,12 +96,17 @@ export class QuestionsService {
       arrayOfDataFiles.forEach((oneFileOfData) =>
         this.questions.push(
           ...JSON.parse(oneFileOfData as any)
-            .map(entry => new Question(entry))
+            .map((entry) => new Question(entry))
 
         )
       );
+      console.log("get and emit");
       this.questionsEmitter.emit(this.questions);
     });
+  }
+
+  constructor(private http: HttpClient) {
+    console.log("QUESTIONS service ct")
 
     this.topics = topics;
   }

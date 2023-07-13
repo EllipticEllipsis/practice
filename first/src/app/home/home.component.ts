@@ -19,16 +19,18 @@ export class HomeComponent {
   topicsList: string[] = this.questionsService.getAllTopics();
 
   constructor() {
-    console.log("HOME constructor")
+    console.log("HOME ct")
     this.questionsService.questionsEmitter.subscribe(
       questions => {
-        console.log("QUESTIONS emitted")
+        console.log("QUESTIONS emitted, length " + questions.length)
+
         this.questionList = questions;
         // Only update when no filter applied
         if (!this.filtered) {
           this.filteredQuestionList = this.questionList;
         }
       });
+    this.questionsService.getData();
     console.log(this.questionList);
   }
 
