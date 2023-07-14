@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { QuestionComponent } from '../question/question.component';
 import { QuestionsService, Question, Section } from '../questions.service';
 import { first } from 'rxjs';
@@ -7,7 +8,7 @@ import { first } from 'rxjs';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, QuestionComponent],
+  imports: [CommonModule, RouterModule, QuestionComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

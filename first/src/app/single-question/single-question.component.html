@@ -2,8 +2,8 @@
     <h2>Single Question: {{ questionId }}</h2>
     <dl>
         <ng-container *ngFor="let prop of question | keyvalue">
-            <dt>{{ prop.key }}</dt>
-            <dd>{{ prop.value }}</dd>
+            <dt>{{ prop?.key }}</dt>
+            <dd>{{ prop?.value }}</dd>
         </ng-container>
     </dl>
 </article>

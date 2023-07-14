@@ -22,10 +22,13 @@ export class SingleQuestionComponent {
     this.questionsService.questionsEmitter.pipe(first()).subscribe(
       questions => {
         this.question = questions[this.questionId];
-        console.log(questions);
+        // console.log(questions);
+        console.log("subscription caught in SingleQuestionComponent")
         console.log(this.question);
       });
     this.questionsService.getData();
+
+    console.log("end of SingleQuestionComponent ct")
     console.log(this.question);
   }
 }

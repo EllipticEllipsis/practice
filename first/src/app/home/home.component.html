@@ -65,5 +65,8 @@
         <td>
             {{ q.topics.join(', ') }}
         </td>
+        <td>
+            <a [routerLink]="['/question', q.id]">View</a>
+        </td>
     </tr>
 </table>
