@@ -70,12 +70,14 @@ const files: string[] = [
   providedIn: 'root'
 })
 export class QuestionsService {
-  questions: Question[] = [];
-  public questionsEmitter = new EventEmitter<Question[]>()
+  // questions: Question[] = [];
+  questions: { [key: string]: Question } = {};
+  public questionsEmitter = new EventEmitter<{ [key: string]: Question }>()
+  public singleQuestionEmitter = new EventEmitter<Question>()
   // TODO: should topics be handled elsewhere?
-  topics : { [key: string]: string[] };
+  topics: { [key: string]: string[] };
 
-  getAllQuestions(): Question[] {
+  getAllQuestions(): { [key: string]: Question } {
     return this.questions;
   }
   getAllTopics(): { [key: string]: string[] } {
@@ -86,7 +88,7 @@ export class QuestionsService {
   }
 
   getData() {
-    if (this.questions.length > 0) {
+    if (Object.keys(this.questions).length > 0) {
       console.log("emit from cache");
       this.questionsEmitter.emit(this.questions);
       return;
@@ -95,17 +97,19 @@ export class QuestionsService {
       f => this.http.get('../../assets/1/' + f + '.data.json', { responseType: 'text' as 'json' })
     )
     forkJoin(arrayOfObservables).subscribe((arrayOfDataFiles) => {
-      this.questions = [];
+      this.questions = {};
       arrayOfDataFiles.forEach((oneFileOfData) =>
-        this.questions.push(
-          ...JSON.parse(oneFileOfData as any)
-            .map((entry) => new Question(entry))
-
-        )
+        JSON.parse(oneFileOfData as any).forEach((entry) => {
+          this.questions[entry.id] = new Question(entry);
+        })
       );
       console.log("get and emit");
       this.questionsEmitter.emit(this.questions);
     });
+  }
+  getSingleQuestion(id: string) {
+    this.getData();
+    return this.questions[id];
   }
 
   constructor(private http: HttpClient) {

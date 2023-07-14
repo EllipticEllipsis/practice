@@ -13,6 +13,7 @@ import { first } from 'rxjs';
 })
 export class HomeComponent {
   questionsService: QuestionsService = inject(QuestionsService);
+  // questionList: Question[] = [];
   questionList: Question[] = [];
   filteredQuestionList: Question[] = [];
   filtered: boolean = false;
@@ -24,7 +25,7 @@ export class HomeComponent {
     this.questionsService.questionsEmitter.pipe(first()).subscribe(
       questions => {
         // console.log("QUESTIONS emitted, length " + questions.length)
-        this.questionList = questions;
+        this.questionList = Object.values(questions);
         // Only update when no filter applied
         if (!this.filtered) {
           this.filteredQuestionList = this.questionList;
