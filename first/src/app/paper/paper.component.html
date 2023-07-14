@@ -1,0 +1,10 @@
+<h2>Paper: Part {{ part }}, {{ year }}, Paper {{ paper }}</h2>
+<ng-container *ngFor="let section of sectionQuestionsList | keyvalue">
+    <h3>Section {{ section.key }}</h3>
+    <dl>
+        <ng-container *ngFor="let q of section.value">
+            <dt>{{ q.number }}{{ q.examiner }}</dt>
+            <dd>{{ q.course }} ({{ q.topics.join(', ') }}) [{{ q.id }}]</dd>
+        </ng-container>
+    </dl>
+</ng-container>

@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { CreditsComponent } from "./credits/credits.component";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SingleQuestionComponent } from './single-question/single-question.component';
+import { PaperComponent } from './paper/paper.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SingleQuestionComponent } from './single-question/single-question.compo
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'credits', component: CreditsComponent },
       { path: 'question/:id', component: SingleQuestionComponent },
+      { path: 'paper/:part/:year/:paper', component: PaperComponent },
       { path: '**', component: PageNotFoundComponent }
     ])
   ]
